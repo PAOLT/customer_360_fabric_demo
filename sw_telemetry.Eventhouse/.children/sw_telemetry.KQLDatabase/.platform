@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "KQLDatabase",
+    "displayName": "sw_telemetry",
+    "description": "sw_telemetry"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "3b27e0a0-af22-9b1e-49e7-b71902185403"
+  }
+}

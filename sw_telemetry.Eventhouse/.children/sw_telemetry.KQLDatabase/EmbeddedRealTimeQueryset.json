@@ -1,0 +1,52 @@
+{
+  "queryset": {
+    "version": "1.0.0",
+    "dataSources": [
+      {
+        "id": "9e684e24-1d4f-4f00-8642-19fd5cd4d72f",
+        "clusterUri": "https://trd-gr2dg2k2pvua4vq361.z3.kusto.fabric.microsoft.com",
+        "type": "Fabric",
+        "databaseItemId": "02185403-b719-49e7-9b1e-af223b27e0a0"
+      }
+    ],
+    "tabs": [
+      {
+        "id": "dda3a389-61c0-41a4-a2bf-09b204053e51",
+        "content": "//Raw data table - ingest data here\n.create table SoftwareTelemetryRaw (\n    event_id:string,\n    event_time:datetime,\n    customer_id:string,\n    user_id:string,\n    product:string,\n    environment:string,\n    event_type:string,\n    event_json:string,\n    message:string\n)\n\nSoftwareTelemetryRaw | take 10\n\nSoftwareTelemetryRaw\n| extend payload = todynamic(event_json)\n| project payload\n\n//feature = tostring(payload.feature),\n\n",
+        "title": "Raw data",
+        "dataSourceId": "9e684e24-1d4f-4f00-8642-19fd5cd4d72f"
+      },
+      {
+        "id": "174dd635-47b1-4b8f-8144-1f65cb724e68",
+        "content": "// Curated feature-usage table - extracts typed columns from the JSON payload.\n.create table FeatureUsage (\n    event_id:string,\n    event_time:datetime,\n    customer_id:string,\n    user_id:string,\n    product:string,\n    environment:string,\n    event_type:string,\n    feature:string,\n    action:string,\n    duration_ms:int,\n    success:bool,\n    error_code:string,\n    device_os:string,\n    browser:string,\n    source_system:string,\n    export_format:string,\n    row_count:int,\n    rating:int,\n    tokens:int,\n    message:string\n)\n\n\n//Transformation function for update policy\n.create-or-alter function SoftwareTelemetryRaw_To_FeatureUsage() {\n    SoftwareTelemetryRaw\n    | extend payload = todynamic(event_json)\n    | project\n        event_id,\n        event_time,\n        customer_id,\n        user_id,\n        product,\n        environment,\n        event_type,\n        feature = tostring(payload.feature),\n        action = tostring(payload.action),\n        duration_ms = toint(payload.duration_ms),\n        success = tobool(payload.success),\n        error_code = tostring(payload.error_code),\n        device_os = tostring(payload.device.os),\n        browser = tostring(payload.device.browser),\n        source_system = tostring(payload.source),\n        export_format = tostring(payload.format),\n        row_count = toint(payload.row_count),\n        rating = toint(payload.rating),\n        tokens = toint(payload.tokens),\n        message\n}\n\n.alter table FeatureUsage policy update\n    ```[\n        {\"IsEnabled\": true, \n        \"Source\": \"SoftwareTelemetryRaw\", \n        \"Query\": \"SoftwareTelemetryRaw_To_FeatureUsage()\", \n        \"IsTransactional\": true, \n        \"PropagateIngestionProperties\": true}\n    ]```\n    \n.show table FeatureUsage policy update\n\nFeatureUsage | take 10\n\n.alter-merge table FeatureUsage policy mirroring kind=delta with (IsEnabled=true, TargetLatencyInMinutes=0)\n\n.show table FeatureUsage operations mirroring-status\n\n.show table FeatureUsage operations mirroring-failures\n\n.show table FeatureUsage operations mirroring-exported-artifacts",
+        "title": "FeatureUsage",
+        "dataSourceId": "9e684e24-1d4f-4f00-8642-19fd5cd4d72f"
+      },
+      {
+        "id": "6dd843c6-1a7b-4ed2-b40a-30c19846281c",
+        "content": "// Raw telemetry often contains nested JSON and arrays. KQL can turn that into clean analytical tables automatically at ingestion time.\n\n.create table FeatureUsageTags (\n    event_id:string,\n    event_time:datetime,\n    customer_id:string,\n    feature:string,\n    tag:string\n)\n\n// mv-expand over semi-structured JSON arrays.\n.create-or-alter function SoftwareTelemetryRaw_To_FeatureUsageTags() {\n    SoftwareTelemetryRaw\n    | extend payload = todynamic(event_json)\n    | extend tags = payload.tags\n    | mv-expand tag = tags\n    | project\n        event_id,\n        event_time,\n        customer_id,\n        feature = tostring(payload.feature),\n        tag = tostring(tag)\n}\n\n.alter table FeatureUsageTags policy update\n```[\n  {\n    \"IsEnabled\": true,\n    \"Source\": \"SoftwareTelemetryRaw\",\n    \"Query\": \"SoftwareTelemetryRaw_To_FeatureUsageTags()\",\n    \"IsTransactional\": true,\n    \"PropagateIngestionProperties\": true\n  }\n]```\n\nFeatureUsageTags | take 10",
+        "title": "FeatureUsageTags",
+        "dataSourceId": "9e684e24-1d4f-4f00-8642-19fd5cd4d72f"
+      },
+      {
+        "id": "3dd07a20-600d-48ce-8feb-358eedee5ec0",
+        "content": "// Most used product features\nFeatureUsage\n| summarize Events=count(), Users=dcount(user_id), Customers=dcount(customer_id)\n    by feature\n| order by Events desc\n\n//Feature adoption by customer\nFeatureUsage\n| summarize \n    Events=count(),\n    ActiveUsers=dcount(user_id),\n    SuccessfulEvents=countif(success == true),\n    FailedEvents=countif(success == false)\n    by customer_id, feature\n| extend SuccessRate = round(100.0 * SuccessfulEvents / Events, 2)\n| order by customer_id asc, Events desc\n\n//Average feature response time\nFeatureUsage\n| summarize \n    AvgDurationMs=round(avg(duration_ms), 0),\n    P95DurationMs=percentile(duration_ms, 95),\n    Events=count()\n    by feature\n| order by AvgDurationMs desc\n\n//Analyze failures from extracted JSON fields\nFeatureUsage\n| where success == false\n| summarize Failures=count() by feature, action, error_code\n| order by Failures desc\n\n//Query over free-text messages\nFeatureUsage\n| where message has_any (\"timeout\", \"failed\", \"confusing\", \"unavailable\")\n| project event_time, customer_id, feature, action, success, error_code, message\n| order by event_time desc\n\n//Search for AI-related feedback\nFeatureUsage\n| where feature == \"AI Assistant\"\n| where message has_any (\"confusing\", \"timeout\", \"forecast\", \"summary\")\n| project event_time, customer_id, user_id, action, success, rating, tokens, message\n| order by event_time desc\n\n//Feature tags from JSON arrays\nFeatureUsageTags\n| summarize Events=count(), Customers=dcount(customer_id)\n    by tag\n| order by Events desc",
+        "title": "Queries",
+        "dataSourceId": "9e684e24-1d4f-4f00-8642-19fd5cd4d72f"
+      },
+      {
+        "id": "c204e2d6-420b-4508-bf23-1babdc775efb",
+        "content": "\n\n.create materialized-view feature_adoption_by_customer on table FeatureUsage\n{    \n    FeatureUsage  \n    | summarize Events=count(),\n    ActiveUsers=dcount(user_id),\n    SuccessfulEvents=countif(success == true),\n    FailedEvents=countif(success == false)\n    by customer_id, feature\n}\n\n",
+        "title": "mat view",
+        "dataSourceId": "9e684e24-1d4f-4f00-8642-19fd5cd4d72f"
+      },
+      {
+        "id": "97720cb0-bd46-4e97-a56b-81b19b5fe6de",
+        "content": "//remove tables\n.drop table FeatureUsage\n\n.drop table FeatureUsageTags\n\n.drop table SoftwareTelemetryRaw\n\n\n//delete data\n.delete table FeatureUsage\n\n.delete table FeatureUsageTags\n\n.delete table SoftwareTelemetryRaw",
+        "title": "drop all tables",
+        "dataSourceId": "9e684e24-1d4f-4f00-8642-19fd5cd4d72f"
+      }
+    ],
+    "querysetType": "Embedded"
+  }
+}

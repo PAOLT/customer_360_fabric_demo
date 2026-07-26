@@ -1,0 +1,56 @@
+// KQL script
+// Use management commands in this script to configure your database items, such as tables, functions, materialized views, and more.
+
+
+.create-merge table SoftwareTelemetryRaw (event_id:string, event_time:datetime, customer_id:string, user_id:string, product:string, environment:string, event_type:string, event_json:string, message:string) 
+.create-or-alter table SoftwareTelemetryRaw ingestion csv mapping 'SoftwareTelemetryRaw_mapping'
+```
+[{"Properties":{"Ordinal":"0"},"column":"event_id","datatype":""},{"Properties":{"Ordinal":"1"},"column":"event_time","datatype":""},{"Properties":{"Ordinal":"2"},"column":"customer_id","datatype":""},{"Properties":{"Ordinal":"3"},"column":"user_id","datatype":""},{"Properties":{"Ordinal":"4"},"column":"product","datatype":""},{"Properties":{"Ordinal":"5"},"column":"environment","datatype":""},{"Properties":{"Ordinal":"6"},"column":"event_type","datatype":""},{"Properties":{"Ordinal":"7"},"column":"event_json","datatype":""},{"Properties":{"Ordinal":"8"},"column":"message","datatype":""}]
+```
+.create-merge table FeatureUsage (event_id:string, event_time:datetime, customer_id:string, user_id:string, product:string, environment:string, event_type:string, feature:string, action:string, duration_ms:int, success:bool, error_code:string, device_os:string, browser:string, source_system:string, export_format:string, row_count:int, rating:int, tokens:int, message:string) 
+.create-merge table FeatureUsageTags (event_id:string, event_time:datetime, customer_id:string, feature:string, tag:string) 
+.create-or-alter function with (skipvalidation = "true") SoftwareTelemetryRaw_To_FeatureUsage() {
+    SoftwareTelemetryRaw
+    | extend payload = todynamic(event_json)
+    | project
+        event_id,
+        event_time,
+        customer_id,
+        user_id,
+        product,
+        environment,
+        event_type,
+        feature = tostring(payload.feature),
+        action = tostring(payload.action),
+        duration_ms = toint(payload.duration_ms),
+        success = tobool(payload.success),
+        error_code = tostring(payload.error_code),
+        device_os = tostring(payload.device.os),
+        browser = tostring(payload.device.browser),
+        source_system = tostring(payload.source),
+        export_format = tostring(payload.format),
+        row_count = toint(payload.row_count),
+        rating = toint(payload.rating),
+        tokens = toint(payload.tokens),
+        message
+}
+.create-or-alter function with (skipvalidation = "true") SoftwareTelemetryRaw_To_FeatureUsageTags() {
+    SoftwareTelemetryRaw
+    | extend payload = todynamic(event_json)
+    | extend tags = payload.tags
+    | mv-expand tag = tags
+    | project
+        event_id,
+        event_time,
+        customer_id,
+        feature = tostring(payload.feature),
+        tag = tostring(tag)
+}
+.create-or-alter materialized-view  feature_adoption_by_customer on table FeatureUsage { FeatureUsage  
+    | summarize Events=count(),
+    ActiveUsers=dcount(user_id),
+    SuccessfulEvents=countif(success == true),
+    FailedEvents=countif(success == false)
+    by customer_id, feature }
+.alter table FeatureUsage policy update "[{\"IsEnabled\":true,\"Source\":\"SoftwareTelemetryRaw\",\"Query\":\"SoftwareTelemetryRaw_To_FeatureUsage()\",\"IsTransactional\":true,\"PropagateIngestionProperties\":true,\"ManagedIdentity\":null}]"
+.alter table FeatureUsageTags policy update "[{\"IsEnabled\":true,\"Source\":\"SoftwareTelemetryRaw\",\"Query\":\"SoftwareTelemetryRaw_To_FeatureUsageTags()\",\"IsTransactional\":true,\"PropagateIngestionProperties\":true,\"ManagedIdentity\":null}]"

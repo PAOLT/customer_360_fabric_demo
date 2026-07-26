@@ -1,0 +1,15 @@
+[
+  {
+    "name": "FeatureUsage",
+    "path": "/Tables/dbo",
+    "target": {
+      "type": "OneLake",
+      "oneLake": {
+        "path": "Tables/FeatureUsage",
+        "itemId": "3b27e0a0-af22-9b1e-49e7-b71902185403",
+        "workspaceId": "00000000-0000-0000-0000-000000000000",
+        "artifactType": "KustoDatabase"
+      }
+    }
+  }
+]
