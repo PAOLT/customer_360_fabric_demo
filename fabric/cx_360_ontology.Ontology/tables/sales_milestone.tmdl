@@ -1,0 +1,56 @@
+table sales_milestone
+	lineageTag: abdb4e59-6ec4-4f5a-a3b8-fb9df5aea709
+
+	column milestone_id
+		dataType: string
+		lineageTag: 1fec9282-d781-454b-b59e-53ae00b6af54
+		sourceColumn: milestone_id
+
+	column opportunity_id
+		dataType: string
+		lineageTag: 895da5b3-0b0d-491a-83f6-66658131add9
+		sourceColumn: opportunity_id
+
+	column activity_at
+		dataType: dateTime
+		lineageTag: 902ac477-4f03-4621-b007-043c21368a4d
+		sourceColumn: activity_at
+
+	column objective
+		dataType: string
+		lineageTag: 393ccac9-b58f-4391-b5e4-9b63fddbef12
+		sourceColumn: objective
+
+	column outcome
+		dataType: string
+		lineageTag: d94c12f8-784d-463d-b1b9-477a5986e102
+		sourceColumn: outcome
+
+	column sales_engineer_id
+		dataType: string
+		lineageTag: 85d0f2b0-2474-48a2-8c21-2cee35bfa2e1
+		sourceColumn: sales_engineer_id
+
+	partition sales_milestone = entity
+		mode: directLake
+		source
+			entityName: sales_milestones
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+		annotation ONT_WorkspaceId = 00000000-0000-0000-0000-000000000000
+
+		annotation ONT_ItemId = 60cc9c80-1af7-9cee-4180-cbfa6eff52ef
+
+		annotation ONT_ItemKind = Lakehouse
+
+		annotation ONT_ItemName = ONT_ALM_ITEM_NAME
+
+		annotation ONT_WorkspaceName = WORKSPACE_NAME_PLACEHOLDER
+
+		annotation ONT_SqlEndpoint = yjvisctaakaudk3fwmoorna3na-ejxhyfjwxiwuzlko75yskha35u.datawarehouse.fabric.microsoft.com
+
+		annotation ONT_SqlDatabase = cx360_data
+
+		annotation ONT_PinnedAtUtc = 2026-11-24T16:15:41Z
+

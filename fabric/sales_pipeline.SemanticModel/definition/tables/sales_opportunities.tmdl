@@ -1,0 +1,113 @@
+table sales_opportunities
+	lineageTag: 21dc399f-bfe6-49c7-a8ed-f6ef3897bc16
+	sourceLineageTag: [dbo].[sales_opportunities]
+
+	measure yearly_revenue =
+			SUMX (
+			    'sales_opportunities',
+			    VAR EndDate = 'sales_opportunities'[end_date]
+			    VAR MonthsBetween =
+			        DATEDIFF (
+			            EndDate,
+			            DATE ( YEAR ( EndDate ), 12, 31 ),
+			            MONTH
+			        )
+			    RETURN
+			        'sales_opportunities'[monthly_recurring_revenue] * MonthsBetween
+			)
+		lineageTag: 70209bb5-8d72-47c3-a562-6bd84aaa8825
+
+		changedProperty = Name
+
+	column opportunity_id
+		dataType: string
+		lineageTag: bd0dcc85-f1e6-42db-9f91-ba3024b4bbbb
+		sourceLineageTag: opportunity_id
+		summarizeBy: none
+		sourceColumn: opportunity_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_id
+		dataType: string
+		lineageTag: 55d0b38d-f147-4911-a760-e8c6c3447fb2
+		sourceLineageTag: customer_id
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_id
+		dataType: string
+		lineageTag: 605d916d-3000-4c2c-bdef-a36db246692f
+		sourceLineageTag: product_id
+		summarizeBy: none
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column account_executive_id
+		dataType: string
+		lineageTag: 045b5464-64cc-433f-afcd-362f076b9c98
+		sourceLineageTag: account_executive_id
+		summarizeBy: none
+		sourceColumn: account_executive_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column start_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 8ae19dfc-fcc0-4e96-bd10-1c33771b8c09
+		sourceLineageTag: start_date
+		summarizeBy: none
+		sourceColumn: start_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column end_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ab00805d-e0d8-4c94-86cc-afd00f4e3b10
+		sourceLineageTag: end_date
+		summarizeBy: none
+		sourceColumn: end_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column state
+		dataType: string
+		lineageTag: e0958fe7-5d10-45b6-97b6-88e5ec99490f
+		sourceLineageTag: state
+		summarizeBy: none
+		sourceColumn: state
+
+		annotation SummarizationSetBy = Automatic
+
+	column monthly_recurring_revenue
+		dataType: double
+		lineageTag: 2733d840-af58-4f3f-b099-31090a96bab2
+		sourceLineageTag: monthly_recurring_revenue
+		summarizeBy: sum
+		sourceColumn: monthly_recurring_revenue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column currency
+		dataType: string
+		lineageTag: 69a30aa4-a367-4384-b744-cad2a1acb7c0
+		sourceLineageTag: currency
+		summarizeBy: none
+		sourceColumn: currency
+
+		annotation SummarizationSetBy = Automatic
+
+	partition sales_opportunities = entity
+		mode: directLake
+		source
+			entityName: sales_opportunities
+			schemaName: dbo
+			expressionSource: 'DirectLake - cx360_data'
+

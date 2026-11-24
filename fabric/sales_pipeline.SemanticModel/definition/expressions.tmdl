@@ -1,0 +1,11 @@
+expression 'DirectLake - cx360_data' =
+		let
+		    Source = AzureStorage.DataLake("https://onelake.dfs.fabric.microsoft.com/157c6e22-ba36-4c2d-ad4e-ff71251c1bed/6eff52ef-cbfa-4180-9cee-1af760cc9c80", [HierarchicalNavigation=true])
+		in
+		    Source
+	lineageTag: e7477b3f-5bf3-4cc0-b2a7-b3dfdb876818
+
+	annotation PBI_IncludeFutureArtifacts = False
+
+	annotation PBI_RemovedChildren = [{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[support_tickets]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[support_activities]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[subscriptions]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[subscription_payments]"}},"objectType":"Table"}]
+

@@ -1,0 +1,85 @@
+/// Date dimension covering all sales_opportunities start_date values, with day, month, quarter, and year attributes.
+table dates
+	lineageTag: 4b9c259c-b2bd-4f4e-8a13-746ebb26bee0
+	dataCategory: Time
+
+	column Date
+		isUnique
+		formatString: General Date
+		lineageTag: 8da5c7e5-f1db-4916-aca7-968ad05aa73b
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+	column day
+		formatString: 0
+		lineageTag: f91b700c-19db-4388-8e57-71c53d8c5f56
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [day]
+
+		annotation SummarizationSetBy = Automatic
+
+	column month
+		lineageTag: 4740f328-835f-4187-9e59-ec9f31e9010a
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [month]
+		sortByColumn: month_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column month_number
+		formatString: 0
+		lineageTag: 55c8da03-a6df-416e-b1ff-0bf5d30515e4
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [month_number]
+
+		annotation SummarizationSetBy = Automatic
+
+	column quarter
+		lineageTag: 1e9253ff-0951-49fa-be02-9ea73184732c
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [quarter]
+		sortByColumn: quarter_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column quarter_number
+		formatString: 0
+		lineageTag: 2d8caad1-3efa-4346-a9ff-2e9592b99fde
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [quarter_number]
+
+		annotation SummarizationSetBy = Automatic
+
+	column year
+		formatString: 0
+		lineageTag: a2d006c0-eb3b-4249-8b11-51e17c0a3ef3
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [year]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dates = calculated
+		mode: import
+		source =
+				VAR MinYear = 2026
+				VAR MaxYear = 2027
+				RETURN
+				ADDCOLUMNS (
+				    CALENDAR ( DATE ( MinYear, 1, 1 ), DATE ( MaxYear, 12, 31 ) ),
+				    "day", DAY ( [Date] ),
+				    "month", FORMAT ( [Date], "MMMM" ),
+				    "month_number", MONTH ( [Date] ),
+				    "quarter", "Q" & FORMAT ( QUARTER ( [Date] ), "0" ),
+				    "quarter_number", QUARTER ( [Date] ),
+				    "year", YEAR ( [Date] )
+				)
+

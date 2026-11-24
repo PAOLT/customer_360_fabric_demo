@@ -1,0 +1,59 @@
+/// A certification held by an employee for a product.
+entity employee_certification
+	lineageTag: 238f789a-d268-43d6-8818-7614ee5808b8
+	backingTable: employee_certification
+	keyProperty: employee_id
+	keyProperty: product_id
+
+	/// Identifier of the employee who holds the certification.
+	property employee_id
+		dataType: string
+		lineageTag: b4c242a2-f9f2-486b-82bc-8b3e3ecd762e
+
+		backingConfiguration
+			valueColumn: employee_certification.employee_id
+
+		synonym 'employee id'
+
+		synonym 'employee identifier'
+
+		synonym 'staff id'
+
+	/// Identifier of the product or module covered by the certification.
+	property product_id
+		dataType: string
+		lineageTag: 7d32aa22-a691-4733-acb6-c6421fec7674
+
+		backingConfiguration
+			valueColumn: employee_certification.product_id
+
+		synonym 'product id'
+
+		synonym 'product identifier'
+
+		synonym 'module id'
+
+	/// Date when the certification expires.
+	property expiry_date
+		dataType: dateTime
+		lineageTag: 47668c20-23b5-4192-bfb4-469b165643c8
+
+		backingConfiguration
+			valueColumn: employee_certification.expiry_date
+
+		synonym 'expiry date'
+
+		synonym 'expiration date'
+
+		synonym 'valid until'
+
+		synonym 'certification expiry'
+
+	synonym certification
+
+	synonym credential
+
+	synonym qualification
+
+	synonym 'employee credential'
+

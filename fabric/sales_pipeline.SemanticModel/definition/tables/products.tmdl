@@ -1,0 +1,38 @@
+table products
+	lineageTag: fa1a844f-a7f1-48f8-b5aa-2e707ef704f7
+	sourceLineageTag: [dbo].[products]
+
+	column product_id
+		dataType: string
+		lineageTag: e86ade61-a549-40f3-9896-25567f2223cd
+		sourceLineageTag: product_id
+		summarizeBy: none
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: 883599d6-98a8-4488-b232-1bf1ca42c03c
+		sourceLineageTag: name
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column description
+		dataType: string
+		lineageTag: f5f2a973-dead-4d5d-9b0f-7c9433659f73
+		sourceLineageTag: description
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	partition products = entity
+		mode: directLake
+		source
+			entityName: products
+			schemaName: dbo
+			expressionSource: 'DirectLake - cx360_data'
+

@@ -1,0 +1,41 @@
+table employee
+	lineageTag: daaaaca8-0969-414c-927e-c31fc5ff5ce9
+
+	column employee_id
+		dataType: string
+		lineageTag: 88cddb4f-b6eb-4177-8065-3c37ba6e1c82
+		sourceColumn: employee_id
+
+	column name
+		dataType: string
+		lineageTag: f0556c3a-b75e-4d29-92f0-dcfc1e17358a
+		sourceColumn: name
+
+	column role
+		dataType: string
+		lineageTag: 5b27fc12-fbdd-4477-a9b2-1a8f2ebb3715
+		sourceColumn: role
+
+	partition employee = entity
+		mode: directLake
+		source
+			entityName: employees
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+		annotation ONT_WorkspaceId = 00000000-0000-0000-0000-000000000000
+
+		annotation ONT_ItemId = 60cc9c80-1af7-9cee-4180-cbfa6eff52ef
+
+		annotation ONT_ItemKind = Lakehouse
+
+		annotation ONT_ItemName = ONT_ALM_ITEM_NAME
+
+		annotation ONT_WorkspaceName = WORKSPACE_NAME_PLACEHOLDER
+
+		annotation ONT_SqlEndpoint = yjvisctaakaudk3fwmoorna3na-ejxhyfjwxiwuzlko75yskha35u.datawarehouse.fabric.microsoft.com
+
+		annotation ONT_SqlDatabase = cx360_data
+
+		annotation ONT_PinnedAtUtc = 2026-11-24T16:15:41Z
+

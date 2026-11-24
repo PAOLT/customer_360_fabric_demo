@@ -1,0 +1,36 @@
+table customer_account_executives
+	lineageTag: 76b36a88-3ded-4311-aedc-8eb1f00c2095
+
+	column customer_id
+		dataType: string
+		lineageTag: d0a3859d-10d2-41d6-b4a5-5e1c09d2f0fb
+		sourceColumn: customer_id
+
+	column account_executive_id
+		dataType: string
+		lineageTag: 30551162-8a5f-4cb7-829c-fb719a60bcdb
+		sourceColumn: account_executive_id
+
+	partition customer_account_executives = entity
+		mode: directLake
+		source
+			entityName: customer_account_executives
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+		annotation ONT_WorkspaceId = 00000000-0000-0000-0000-000000000000
+
+		annotation ONT_ItemId = 60cc9c80-1af7-9cee-4180-cbfa6eff52ef
+
+		annotation ONT_ItemKind = Lakehouse
+
+		annotation ONT_ItemName = ONT_ALM_ITEM_NAME
+
+		annotation ONT_WorkspaceName = WORKSPACE_NAME_PLACEHOLDER
+
+		annotation ONT_SqlEndpoint = yjvisctaakaudk3fwmoorna3na-ejxhyfjwxiwuzlko75yskha35u.datawarehouse.fabric.microsoft.com
+
+		annotation ONT_SqlDatabase = cx360_data
+
+		annotation ONT_PinnedAtUtc = 2026-11-24T18:52:47Z
+

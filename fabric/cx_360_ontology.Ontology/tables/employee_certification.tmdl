@@ -1,0 +1,41 @@
+table employee_certification
+	lineageTag: 3d295aa3-703c-43bb-aee0-6b1189028a63
+
+	column employee_id
+		dataType: string
+		lineageTag: da6959fc-aab1-4106-ab30-d01e0db42776
+		sourceColumn: employee_id
+
+	column product_id
+		dataType: string
+		lineageTag: 56e9fb4b-dd77-4380-9817-02ac9486a6ab
+		sourceColumn: product_id
+
+	column expiry_date
+		dataType: dateTime
+		lineageTag: 1a9338e5-4d20-45d2-94fe-0ef34b00a321
+		sourceColumn: expiry_date
+
+	partition employee_certification = entity
+		mode: directLake
+		source
+			entityName: employee_certifications
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+		annotation ONT_WorkspaceId = 00000000-0000-0000-0000-000000000000
+
+		annotation ONT_ItemId = 60cc9c80-1af7-9cee-4180-cbfa6eff52ef
+
+		annotation ONT_ItemKind = Lakehouse
+
+		annotation ONT_ItemName = ONT_ALM_ITEM_NAME
+
+		annotation ONT_WorkspaceName = WORKSPACE_NAME_PLACEHOLDER
+
+		annotation ONT_SqlEndpoint = yjvisctaakaudk3fwmoorna3na-ejxhyfjwxiwuzlko75yskha35u.datawarehouse.fabric.microsoft.com
+
+		annotation ONT_SqlDatabase = cx360_data
+
+		annotation ONT_PinnedAtUtc = 2026-11-24T16:15:41Z
+

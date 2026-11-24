@@ -1,0 +1,58 @@
+/// A product or business module in the CX 360 dataset.
+entity product
+	lineageTag: 87376ea3-2e60-4621-a31a-2d9b11f0929f
+	backingTable: product
+	keyProperty: product_id
+
+	/// Unique product identifier.
+	property product_id
+		dataType: string
+		lineageTag: 26b0fbd3-1af6-4398-8805-37003849e127
+
+		backingConfiguration
+			valueColumn: product.product_id
+
+		synonym 'product id'
+
+		synonym 'product identifier'
+
+		synonym 'module id'
+
+		synonym 'offering id'
+
+	/// Product or module name.
+	property name
+		dataType: string
+		lineageTag: 054dd0aa-8550-41d8-8341-cd830c8b020d
+
+		backingConfiguration
+			valueColumn: product.name
+
+		synonym 'product name'
+
+		synonym 'module name'
+
+		synonym 'offering name'
+
+	/// Description of the product or module.
+	property description
+		dataType: string
+		lineageTag: bbb83882-1024-43c3-af5b-493ea0d758b8
+
+		backingConfiguration
+			valueColumn: product.description
+
+		synonym 'product description'
+
+		synonym 'module description'
+
+		synonym 'offering description'
+
+	synonym offering
+
+	synonym module
+
+	synonym service
+
+	synonym package
+

@@ -1,0 +1,96 @@
+/// A recorded milestone activity on a sales opportunity.
+entity sales_milestone
+	lineageTag: ab13c537-d3bf-40f3-ba42-25e2bb985c93
+	backingTable: sales_milestone
+	keyProperty: milestone_id
+
+	/// Unique sales milestone identifier.
+	property milestone_id
+		dataType: string
+		lineageTag: 0edfc21a-2f5f-41d5-8c5e-1bec58336362
+
+		backingConfiguration
+			valueColumn: sales_milestone.milestone_id
+
+		synonym 'milestone id'
+
+		synonym 'milestone identifier'
+
+		synonym 'activity id'
+
+	/// Identifier of the related sales opportunity.
+	property opportunity_id
+		dataType: string
+		lineageTag: 573bf36b-2841-48e2-b910-18a68f08f152
+
+		backingConfiguration
+			valueColumn: sales_milestone.opportunity_id
+
+		synonym 'opportunity id'
+
+		synonym 'deal id'
+
+		synonym 'sales opportunity id'
+
+	/// Timestamp when the milestone activity occurred.
+	property activity_at
+		dataType: dateTime
+		lineageTag: 0bf6a647-dbc5-43a0-b964-c7de98c296dc
+
+		backingConfiguration
+			valueColumn: sales_milestone.activity_at
+
+		synonym 'activity time'
+
+		synonym 'milestone time'
+
+		synonym 'event time'
+
+	/// Objective of the milestone activity.
+	property objective
+		dataType: string
+		lineageTag: 1862f8ce-bf21-4854-9a92-7f9662844bf4
+
+		backingConfiguration
+			valueColumn: sales_milestone.objective
+
+		synonym goal
+
+		synonym purpose
+
+		synonym 'activity objective'
+
+	/// Outcome recorded for the milestone activity.
+	property outcome
+		dataType: string
+		lineageTag: 6d9a2f95-90b3-43eb-9211-17432b389a97
+
+		backingConfiguration
+			valueColumn: sales_milestone.outcome
+
+		synonym result
+
+		synonym 'activity outcome'
+
+		synonym 'status note'
+
+	/// Identifier of the sales engineer who recorded the milestone.
+	property sales_engineer_id
+		dataType: string
+		lineageTag: 6c50ea82-83a6-4c5d-bfe2-a4e1c6deef69
+
+		backingConfiguration
+			valueColumn: sales_milestone.sales_engineer_id
+
+		synonym 'sales engineer id'
+
+		synonym 'engineer id'
+
+		synonym 'technical sales id'
+
+	synonym 'sales activity'
+
+	synonym 'deal milestone'
+
+	synonym 'opportunity milestone'
+

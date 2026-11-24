@@ -1,0 +1,62 @@
+/// An employee record in the CX 360 dataset.
+entity employee
+	lineageTag: 047ee655-8528-46dd-8f39-d59dd5f288bb
+	backingTable: employee
+	keyProperty: employee_id
+
+	/// Unique employee identifier.
+	property employee_id
+		dataType: string
+		lineageTag: 7f7dc5d5-f392-4ec0-b43d-8f5f875d9429
+
+		backingConfiguration
+			valueColumn: employee.employee_id
+
+		synonym 'employee id'
+
+		synonym 'employee identifier'
+
+		synonym 'staff id'
+
+		synonym 'personnel id'
+
+	/// Employee full name.
+	property name
+		dataType: string
+		lineageTag: 3c8affbc-b2e5-47d8-9587-c91d2e0fdbb4
+
+		backingConfiguration
+			valueColumn: employee.name
+
+		synonym 'employee name'
+
+		synonym 'staff name'
+
+		synonym 'person name'
+
+		synonym 'associate name'
+
+	/// Employee role or job code.
+	property role
+		dataType: string
+		lineageTag: 226627c0-e7be-43f4-9568-2390b378e8af
+
+		backingConfiguration
+			valueColumn: employee.role
+
+		synonym role
+
+		synonym 'job role'
+
+		synonym position
+
+		synonym title
+
+	synonym staff
+
+	synonym personnel
+
+	synonym 'team member'
+
+	synonym associate
+

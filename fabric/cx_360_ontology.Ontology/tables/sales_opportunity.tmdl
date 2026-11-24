@@ -1,0 +1,71 @@
+table sales_opportunity
+	lineageTag: d447cf52-2a84-4b34-be80-7e0424f951b6
+
+	column opportunity_id
+		dataType: string
+		lineageTag: d392c740-8eb2-4bed-9f21-de9092dc831b
+		sourceColumn: opportunity_id
+
+	column customer_id
+		dataType: string
+		lineageTag: 790b8b74-ff1d-4cca-aee2-3943f7581df3
+		sourceColumn: customer_id
+
+	column product_id
+		dataType: string
+		lineageTag: b599a222-03c9-4310-8b6c-30c35c6edef9
+		sourceColumn: product_id
+
+	column account_executive_id
+		dataType: string
+		lineageTag: 6443abef-8022-4ed8-9348-5bc0e1623deb
+		sourceColumn: account_executive_id
+
+	column start_date
+		dataType: dateTime
+		lineageTag: d56402a7-f941-40c7-a6a2-d8f3bc03a0b2
+		sourceColumn: start_date
+
+	column end_date
+		dataType: dateTime
+		lineageTag: 23a343ff-e405-428a-8df4-72fd509322ee
+		sourceColumn: end_date
+
+	column state
+		dataType: string
+		lineageTag: 88919861-bb27-45b0-83a5-60b9063e5522
+		sourceColumn: state
+
+	column monthly_recurring_revenue
+		dataType: decimal
+		lineageTag: a5aacff3-a3e3-4bf1-883e-a1a4241d054a
+		sourceColumn: monthly_recurring_revenue
+
+	column currency
+		dataType: string
+		lineageTag: 346b4d32-3a0b-4b5b-9f1f-60aa886ee084
+		sourceColumn: currency
+
+	partition sales_opportunity = entity
+		mode: directLake
+		source
+			entityName: sales_opportunities
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+		annotation ONT_WorkspaceId = 00000000-0000-0000-0000-000000000000
+
+		annotation ONT_ItemId = 60cc9c80-1af7-9cee-4180-cbfa6eff52ef
+
+		annotation ONT_ItemKind = Lakehouse
+
+		annotation ONT_ItemName = ONT_ALM_ITEM_NAME
+
+		annotation ONT_WorkspaceName = WORKSPACE_NAME_PLACEHOLDER
+
+		annotation ONT_SqlEndpoint = yjvisctaakaudk3fwmoorna3na-ejxhyfjwxiwuzlko75yskha35u.datawarehouse.fabric.microsoft.com
+
+		annotation ONT_SqlDatabase = cx360_data
+
+		annotation ONT_PinnedAtUtc = 2026-11-24T16:15:41Z
+

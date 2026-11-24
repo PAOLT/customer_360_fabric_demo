@@ -1,0 +1,126 @@
+/// A customer support ticket.
+entity support_ticket
+	lineageTag: 5ceacf2f-1ab0-41ba-aee0-2043eae9a11b
+	backingTable: support_ticket
+	keyProperty: ticket_id
+
+	/// Unique support ticket identifier.
+	property ticket_id
+		dataType: string
+		lineageTag: 8eb039e7-6ea3-4792-914d-14b3794b85d1
+
+		backingConfiguration
+			valueColumn: support_ticket.ticket_id
+
+		synonym 'ticket id'
+
+		synonym 'case id'
+
+		synonym 'support case id'
+
+	/// Identifier of the customer who opened the ticket.
+	property customer_id
+		dataType: string
+		lineageTag: bc453393-a868-407f-897b-47f5036ed00e
+
+		backingConfiguration
+			valueColumn: support_ticket.customer_id
+
+		synonym 'customer id'
+
+		synonym 'customer identifier'
+
+		synonym 'account id'
+
+	/// Identifier of the product the ticket concerns.
+	property product_id
+		dataType: string
+		lineageTag: d175418a-0654-43cb-80e2-60f4fb593ad7
+
+		backingConfiguration
+			valueColumn: support_ticket.product_id
+
+		synonym 'product id'
+
+		synonym 'product identifier'
+
+		synonym 'module id'
+
+	/// Ticket opened timestamp.
+	property opened_at
+		dataType: dateTime
+		lineageTag: cf579c3e-a940-474f-b6da-7c418f39f905
+
+		backingConfiguration
+			valueColumn: support_ticket.opened_at
+
+		synonym 'open time'
+
+		synonym 'opened on'
+
+		synonym 'case opened'
+
+	/// Ticket state.
+	property state
+		dataType: string
+		lineageTag: cf29f49b-69e6-4375-8aed-630255ddf436
+
+		backingConfiguration
+			valueColumn: support_ticket.state
+
+		synonym status
+
+		synonym 'lifecycle state'
+
+		synonym 'case state'
+
+	/// Ticket closed timestamp.
+	property closed_at
+		dataType: dateTime
+		lineageTag: b732e02e-308a-4183-b1af-2f9ee4a17245
+
+		backingConfiguration
+			valueColumn: support_ticket.closed_at
+
+		synonym 'close time'
+
+		synonym 'closed on'
+
+		synonym 'case closed'
+
+	/// Ticket severity level.
+	property severity
+		dataType: string
+		lineageTag: fb23f08c-1218-4d90-8793-5d1c8d765ec0
+
+		backingConfiguration
+			valueColumn: support_ticket.severity
+
+		synonym 'severity level'
+
+		synonym priority
+
+		synonym urgency
+
+	/// Description of the support ticket.
+	property description
+		dataType: string
+		lineageTag: 59ae39fc-1cc4-4a7d-bfdb-ca90955bf906
+
+		backingConfiguration
+			valueColumn: support_ticket.description
+
+		synonym 'case description'
+
+		synonym 'issue description'
+
+		synonym summary
+
+	synonym case
+
+	synonym 'support case'
+
+	synonym issue
+
+	synonym incident
+

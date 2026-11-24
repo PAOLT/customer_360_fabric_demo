@@ -1,0 +1,112 @@
+/// A customer subscription to a product.
+entity subscription
+	lineageTag: 0042a693-6630-4f71-ad2e-7f8ef552309c
+	backingTable: subscription
+	keyProperty: subscription_id
+
+	/// Unique subscription identifier.
+	property subscription_id
+		dataType: string
+		lineageTag: b943e18c-0d5e-4100-8981-f735ccff4cf7
+
+		backingConfiguration
+			valueColumn: subscription.subscription_id
+
+		synonym 'subscription id'
+
+		synonym 'subscription identifier'
+
+		synonym 'contract id'
+
+	/// Identifier of the subscribing customer.
+	property customer_id
+		dataType: string
+		lineageTag: 7091a551-718c-4977-b676-6a026d4e344b
+
+		backingConfiguration
+			valueColumn: subscription.customer_id
+
+		synonym 'customer id'
+
+		synonym 'customer identifier'
+
+		synonym 'account id'
+
+	/// Identifier of the subscribed product.
+	property product_id
+		dataType: string
+		lineageTag: b5aba68f-439b-4633-9b8d-7b03184af42e
+
+		backingConfiguration
+			valueColumn: subscription.product_id
+
+		synonym 'product id'
+
+		synonym 'product identifier'
+
+		synonym 'module id'
+
+	/// Subscription start date.
+	property start_date
+		dataType: dateTime
+		lineageTag: 05af3949-450c-45d4-9621-d8a61ae4794b
+
+		backingConfiguration
+			valueColumn: subscription.start_date
+
+		synonym 'start date'
+
+		synonym 'activation date'
+
+		synonym 'effective date'
+
+	/// Subscription end date.
+	property end_date
+		dataType: dateTime
+		lineageTag: 86279bf6-4dcc-4cfd-9e01-4ab97b56df7a
+
+		backingConfiguration
+			valueColumn: subscription.end_date
+
+		synonym 'end date'
+
+		synonym 'termination date'
+
+		synonym 'expiry date'
+
+	/// Monthly subscription fee.
+	property monthly_fee
+		dataType: decimal
+		lineageTag: ca6659d4-d008-4ecc-8726-31b9393679d1
+
+		backingConfiguration
+			valueColumn: subscription.monthly_fee
+
+		synonym 'monthly fee'
+
+		synonym 'monthly charge'
+
+		synonym 'subscription amount'
+
+	/// Currency code used for the fee.
+	property currency
+		dataType: string
+		lineageTag: 2b699ef4-5dc0-4420-a1f4-7fdc371c8c82
+
+		backingConfiguration
+			valueColumn: subscription.currency
+
+		synonym 'currency code'
+
+		synonym currency
+
+		synonym 'iso currency'
+
+	synonym plan
+
+	synonym membership
+
+	synonym contract
+
+	synonym 'subscription plan'
+

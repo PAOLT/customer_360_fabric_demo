@@ -1,0 +1,66 @@
+table support_ticket
+	lineageTag: cdbdef39-03a8-4e35-808e-abc843137bf0
+
+	column ticket_id
+		dataType: string
+		lineageTag: 7aaa0261-ee29-4442-9640-379f24c6811c
+		sourceColumn: ticket_id
+
+	column customer_id
+		dataType: string
+		lineageTag: c21df58e-521f-4cf6-b10c-28d7b8a2a5cd
+		sourceColumn: customer_id
+
+	column product_id
+		dataType: string
+		lineageTag: dd11f671-f192-4eb3-b5a1-16a49c1690c6
+		sourceColumn: product_id
+
+	column opened_at
+		dataType: dateTime
+		lineageTag: fe5222fa-0e6a-4066-a8d1-3b512010c946
+		sourceColumn: opened_at
+
+	column state
+		dataType: string
+		lineageTag: b8837751-49f0-4f4a-a266-fd4a7ac4b2fa
+		sourceColumn: state
+
+	column closed_at
+		dataType: dateTime
+		lineageTag: 1f674665-de45-4165-8f82-1bdc0db69a5d
+		sourceColumn: closed_at
+
+	column severity
+		dataType: string
+		lineageTag: 44f1efe9-fca2-4af1-92a5-9bb2681b785c
+		sourceColumn: severity
+
+	column description
+		dataType: string
+		lineageTag: 0667ee8a-c3d7-45e6-8a8d-430d441f24c4
+		sourceColumn: description
+
+	partition support_ticket = entity
+		mode: directLake
+		source
+			entityName: support_tickets
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+		annotation ONT_WorkspaceId = 00000000-0000-0000-0000-000000000000
+
+		annotation ONT_ItemId = 60cc9c80-1af7-9cee-4180-cbfa6eff52ef
+
+		annotation ONT_ItemKind = Lakehouse
+
+		annotation ONT_ItemName = ONT_ALM_ITEM_NAME
+
+		annotation ONT_WorkspaceName = WORKSPACE_NAME_PLACEHOLDER
+
+		annotation ONT_SqlEndpoint = yjvisctaakaudk3fwmoorna3na-ejxhyfjwxiwuzlko75yskha35u.datawarehouse.fabric.microsoft.com
+
+		annotation ONT_SqlDatabase = cx360_data
+
+		annotation ONT_PinnedAtUtc = 2026-11-24T16:15:41Z
+

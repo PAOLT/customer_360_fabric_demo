@@ -1,0 +1,38 @@
+table employees
+	lineageTag: 5b04e889-db9a-4ebb-af1b-bf7cfb716cb8
+	sourceLineageTag: [dbo].[employees]
+
+	column employee_id
+		dataType: string
+		lineageTag: fa0cd791-c062-4be6-9670-38dbe6983961
+		sourceLineageTag: employee_id
+		summarizeBy: none
+		sourceColumn: employee_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: ace370c2-e0dd-4c9b-9451-4214b8e54259
+		sourceLineageTag: name
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column role
+		dataType: string
+		lineageTag: b5e77c25-446b-468f-a27a-4d9f54894837
+		sourceLineageTag: role
+		summarizeBy: none
+		sourceColumn: role
+
+		annotation SummarizationSetBy = Automatic
+
+	partition employees = entity
+		mode: directLake
+		source
+			entityName: employees
+			schemaName: dbo
+			expressionSource: 'DirectLake - cx360_data'
+

@@ -1,0 +1,28 @@
+relationship b486d18e-4c12-fd2f-7ba2-e3d7d1e0395d
+	fromColumn: customers.customer_id
+	toColumn: customer_account_executives.customer_id
+
+relationship 41671d2b-ae2a-f66c-7ab4-f793a7ea170c
+	fromColumn: employee_certifications.employee_id
+	toColumn: employees.employee_id
+
+relationship 8c3a4119-f2c4-24d7-0140-243f6d74637d
+	fromColumn: sales_opportunities.customer_id
+	toColumn: customers.customer_id
+
+relationship 56ad7ca9-8456-cd04-cf13-96d2259c5f0a
+	fromColumn: sales_opportunities.product_id
+	toColumn: products.product_id
+
+relationship 15f38412-f25f-11a4-0938-91960cdc58ae
+	fromColumn: sales_milestones.opportunity_id
+	toColumn: sales_opportunities.opportunity_id
+
+relationship 15aa0806-b00c-3cac-28a7-bd811389755e
+	fromColumn: sales_milestones.sales_engineer_id
+	toColumn: employees.employee_id
+
+relationship bf7dc125-9b5d-1a8f-ae22-1a4c2965cf0d
+	fromColumn: sales_opportunities.start_date
+	toColumn: dates.Date
+

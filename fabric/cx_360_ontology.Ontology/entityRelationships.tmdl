@@ -1,0 +1,173 @@
+/// Links an employee certification to the employee who holds it.
+entityRelationship employee_certification_employee
+	label: employee_certification_employee
+	lineageTag: c33f2ce6-7723-4de9-b6c6-63f1f0239a86
+	fromEntity: employee_certification
+	toEntity: employee
+
+	backingConfiguration
+		relationship: employee_certification_employee_join
+
+/// Links an employee certification to the product it covers.
+entityRelationship employee_certification_product
+	label: employee_certification_product
+	lineageTag: 2b246b94-3c92-4c00-9a73-130ee7077e94
+	fromEntity: employee_certification
+	toEntity: product
+
+	backingConfiguration
+		relationship: employee_certification_product_join
+
+/// Links a sales milestone to its opportunity.
+entityRelationship sales_milestone_opportunity
+	label: sales_milestone_opportunity
+	lineageTag: 85e9b71e-fdbc-4cbd-a878-f214df14fb45
+	fromEntity: sales_milestone
+	toEntity: sales_opportunity
+
+	backingConfiguration
+		relationship: sales_milestone_opportunity_join
+
+/// Links a sales milestone to the sales engineer who recorded it.
+entityRelationship sales_milestone_employee
+	label: sales_milestone_employee
+	lineageTag: e322894d-d6e5-4635-aca3-aeb94dc1562a
+	fromEntity: sales_milestone
+	toEntity: employee
+
+	backingConfiguration
+		relationship: sales_milestone_employee_join
+
+/// Links a sales opportunity to the customer it concerns.
+entityRelationship sales_opportunity_customer
+	label: sales_opportunity_customer
+	lineageTag: b39ae359-1886-4aa6-a6e9-4765c32d243b
+	fromEntity: sales_opportunity
+	toEntity: customer
+
+	backingConfiguration
+		relationship: sales_opportunity_customer_join
+
+/// Links a sales opportunity to the product it concerns.
+entityRelationship sales_opportunity_product
+	label: sales_opportunity_product
+	lineageTag: 3ac49e67-5426-446b-83b2-03b4735eec4d
+	fromEntity: sales_opportunity
+	toEntity: product
+
+	backingConfiguration
+		relationship: sales_opportunity_product_join
+
+/// Links a sales opportunity to the account executive responsible for it.
+entityRelationship sales_opportunity_employee
+	label: sales_opportunity_employee
+	lineageTag: ea140638-6423-4616-9951-1c52a06b9020
+	fromEntity: sales_opportunity
+	toEntity: employee
+
+	backingConfiguration
+		relationship: sales_opportunity_employee_join
+
+/// Links a subscription payment to the subscription it pays for.
+entityRelationship subscription_payment_subscription
+	label: subscription_payment_subscription
+	lineageTag: 71960069-25cd-416b-92ee-5e933c485fb9
+	fromEntity: subscription_payment
+	toEntity: subscription
+
+	backingConfiguration
+		relationship: subscription_payment_subscription_join
+
+/// Links a subscription to the customer who owns it.
+entityRelationship subscription_customer
+	label: subscription_customer
+	lineageTag: 7d2b5bdc-5c8c-4795-8175-ccc29eed500e
+	fromEntity: subscription
+	toEntity: customer
+
+	backingConfiguration
+		relationship: subscription_customer_join
+
+/// Links a subscription to the product it covers.
+entityRelationship subscription_product
+	label: subscription_product
+	lineageTag: 97f257d2-056f-4632-8f7f-0b7fb2953104
+	fromEntity: subscription
+	toEntity: product
+
+	backingConfiguration
+		relationship: subscription_product_join
+
+/// Links a support activity to the ticket it belongs to.
+entityRelationship support_activity_ticket
+	label: support_activity_ticket
+	lineageTag: fb92e562-6ecc-48ec-a3dd-f1f383665643
+	fromEntity: support_activity
+	toEntity: support_ticket
+
+	backingConfiguration
+		relationship: support_activity_ticket_join
+
+/// Links a support activity to the technical engineer who worked on it.
+entityRelationship support_activity_employee
+	label: support_activity_employee
+	lineageTag: a9460777-0860-4f1c-86de-9a2779e63301
+	fromEntity: support_activity
+	toEntity: employee
+
+	backingConfiguration
+		relationship: support_activity_employee_join
+
+/// Links a support ticket to the customer who opened it.
+entityRelationship support_ticket_customer
+	label: support_ticket_customer
+	lineageTag: bf4fae24-cc9b-4936-bc0c-086e8f9fdedb
+	fromEntity: support_ticket
+	toEntity: customer
+
+	backingConfiguration
+		relationship: support_ticket_customer_join
+
+/// Links a support ticket to the product it concerns.
+entityRelationship support_ticket_product
+	label: support_ticket_product
+	lineageTag: 98e612d5-019f-4a62-84ef-11bdc73effa2
+	fromEntity: support_ticket
+	toEntity: product
+
+	backingConfiguration
+		relationship: support_ticket_product_join
+
+/// Links a customer to the employee assigned as the account executive through the customer_account_executives table.
+entityRelationship customer_account_executive
+	label: customer_account_executive
+	lineageTag: 725d686b-049d-4cf5-b769-cbdc200acc93
+	fromEntity: customer
+	toEntity: employee
+
+	backingConfiguration
+		type: table
+		table: customer_account_executives
+		fromRelationship: customer_account_executive_from_join
+		toRelationship: customer_account_executive_to_join
+
+/// Links a product telemetry event to the customer associated with the event.
+entityRelationship product_telemetry_customer
+	label: product_telemetry_customer
+	lineageTag: 107630dd-f83e-44b6-8b17-f26e1c010c31
+	fromEntity: product_telemetry
+	toEntity: customer
+
+	backingConfiguration
+		relationship: product_telemetry_customer_join
+
+/// Links a product telemetry event to the product associated with the event.
+entityRelationship product_telemetry_product
+	label: product_telemetry_product
+	lineageTag: 03239315-1107-4093-80af-e8644b78d08d
+	fromEntity: product_telemetry
+	toEntity: product
+
+	backingConfiguration
+		relationship: product_telemetry_product_join
+

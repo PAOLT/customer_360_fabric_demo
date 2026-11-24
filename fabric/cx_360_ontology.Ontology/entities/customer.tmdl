@@ -1,0 +1,62 @@
+/// A customer record from the customers table, representing a customer organization in the CX 360 dataset.
+entity customer
+	lineageTag: 56798887-2130-4a5c-9a0b-98c05f8ca07c
+	backingTable: customer
+	keyProperty: customer_id
+
+	/// Unique customer identifier.
+	property customer_id
+		dataType: string
+		lineageTag: e636fbcf-d476-4a3e-86d4-0aff71197f80
+
+		backingConfiguration
+			valueColumn: customer.customer_id
+
+		synonym 'customer id'
+
+		synonym 'customer identifier'
+
+		synonym 'client id'
+
+		synonym 'account id'
+
+	/// Customer organization name.
+	property name
+		dataType: string
+		lineageTag: c34b7240-f9a9-474b-9a53-cfc800b9269b
+
+		backingConfiguration
+			valueColumn: customer.name
+
+		synonym 'customer name'
+
+		synonym 'client name'
+
+		synonym 'account name'
+
+	/// Country or territory associated with the customer.
+	property country
+		dataType: string
+		lineageTag: 592961d8-2c19-4b4b-ae3e-ef5652713edd
+
+		backingConfiguration
+			valueColumn: customer.country
+
+		synonym 'customer country'
+
+		synonym country
+
+		synonym nation
+
+		synonym territory
+
+	synonym customer
+
+	synonym client
+
+	synonym account
+
+	synonym buyer
+
+	synonym 'customer account'
+

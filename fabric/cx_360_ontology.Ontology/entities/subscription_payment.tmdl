@@ -1,0 +1,96 @@
+/// A payment for a subscription billing month.
+entity subscription_payment
+	lineageTag: 29fa8ae6-33db-430e-a514-94fd8c8adb29
+	backingTable: subscription_payment
+	keyProperty: payment_id
+
+	/// Unique subscription payment identifier.
+	property payment_id
+		dataType: string
+		lineageTag: e49fee5a-407d-4899-a6e9-06d5964265f9
+
+		backingConfiguration
+			valueColumn: subscription_payment.payment_id
+
+		synonym 'payment id'
+
+		synonym 'payment identifier'
+
+		synonym 'invoice id'
+
+	/// Identifier of the related subscription.
+	property subscription_id
+		dataType: string
+		lineageTag: 218091d5-a36c-4ad8-ad7f-37b59c0d9fb9
+
+		backingConfiguration
+			valueColumn: subscription_payment.subscription_id
+
+		synonym 'subscription id'
+
+		synonym 'subscription identifier'
+
+		synonym 'contract id'
+
+	/// Billing month for the payment.
+	property billing_month
+		dataType: dateTime
+		lineageTag: 04fa0504-8752-48ac-9e70-d41a38f7c989
+
+		backingConfiguration
+			valueColumn: subscription_payment.billing_month
+
+		synonym 'billing month'
+
+		synonym 'invoice month'
+
+		synonym 'charge month'
+
+	/// Date the payment was made.
+	property paid_on
+		dataType: dateTime
+		lineageTag: ad7c511b-3051-4f16-9c79-117c583581d9
+
+		backingConfiguration
+			valueColumn: subscription_payment.paid_on
+
+		synonym 'paid date'
+
+		synonym 'payment date'
+
+		synonym 'settled on'
+
+	/// Payment amount.
+	property amount
+		dataType: decimal
+		lineageTag: 53e05da0-2165-4d40-9374-08448ff97665
+
+		backingConfiguration
+			valueColumn: subscription_payment.amount
+
+		synonym 'payment amount'
+
+		synonym 'charge amount'
+
+		synonym 'invoice amount'
+
+	/// Currency code used for the payment.
+	property currency
+		dataType: string
+		lineageTag: 0dbe34ce-dc4d-40e8-b57c-d00de2295875
+
+		backingConfiguration
+			valueColumn: subscription_payment.currency
+
+		synonym 'currency code'
+
+		synonym currency
+
+		synonym 'iso currency'
+
+	synonym 'billing payment'
+
+	synonym 'subscription charge'
+
+	synonym 'invoice payment'
+

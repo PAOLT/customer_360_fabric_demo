@@ -1,0 +1,64 @@
+table product_telemetry
+	lineageTag: 882cc5af-a172-43d1-9646-03862c5dfc05
+
+	column event_at
+		dataType: dateTime
+		lineageTag: 87a58163-4ae0-4e06-9bde-3bfaa96ed91d
+		sourceColumn: event_at
+
+	column event_id
+		dataType: string
+		lineageTag: 1aed8548-9dc6-4bda-9b1a-6af935861345
+		sourceColumn: event_id
+
+	column customer_id
+		dataType: string
+		lineageTag: e81e54fc-9f0a-4b10-808c-dd5ff5fbe71c
+		sourceColumn: customer_id
+
+	column product_id
+		dataType: string
+		lineageTag: 61fcdf02-fe6f-447f-a369-2fb84e752b31
+		sourceColumn: product_id
+
+	column action
+		dataType: string
+		lineageTag: a20b4199-5e5c-4392-820f-0db012488ed5
+		sourceColumn: action
+
+	column state
+		dataType: string
+		lineageTag: e69551b5-4754-4daf-9610-735551025ca3
+		sourceColumn: state
+
+	column error_message
+		dataType: string
+		lineageTag: b51cf501-eb15-4411-9b16-4a9d36f1d869
+		sourceColumn: error_message
+
+	partition product_telemetry = m
+		mode: directQuery
+		source =
+				let
+				    Source = AzureDataExplorer.Contents("https://trd-uk4zk7q38r6903vtd0.z9.kusto.fabric.microsoft.com", "cx360_telemetry", "product_telemetry", [])
+				in
+				    Source
+
+		annotation ONT_WorkspaceId = 157c6e22-ba36-4c2d-ad4e-ff71251c1bed
+
+		annotation ONT_ItemId = 9e18f3a2-1c83-437c-a00b-e4d9bfef7441
+
+		annotation ONT_ItemKind = Eventhouse
+
+		annotation ONT_ItemName = cx360_telemetry
+
+		annotation ONT_WorkspaceName = cx360
+
+		annotation ONT_KustoClusterUri = https://trd-uk4zk7q38r6903vtd0.z9.kusto.fabric.microsoft.com
+
+		annotation ONT_KustoDatabase = cx360_telemetry
+
+		annotation ONT_KustoTable = product_telemetry
+
+		annotation ONT_PinnedAtUtc = 2026-11-24T18:55:19Z
+

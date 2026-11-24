@@ -1,0 +1,56 @@
+table subscription_payment
+	lineageTag: 892b707d-db77-4c21-ac12-8836b7562b84
+
+	column payment_id
+		dataType: string
+		lineageTag: 25af0d02-c8ce-4d11-8477-2a29de26076a
+		sourceColumn: payment_id
+
+	column subscription_id
+		dataType: string
+		lineageTag: c970f560-ab58-4c9d-b91d-c1d43dcf0e45
+		sourceColumn: subscription_id
+
+	column billing_month
+		dataType: dateTime
+		lineageTag: 20eee032-0a69-432c-93c8-d605c9d61fa2
+		sourceColumn: billing_month
+
+	column paid_on
+		dataType: dateTime
+		lineageTag: 39d5fb49-dafe-4b70-a099-8cc5d261cd23
+		sourceColumn: paid_on
+
+	column amount
+		dataType: decimal
+		lineageTag: bb767a69-47f4-4590-bd6e-d59dababe919
+		sourceColumn: amount
+
+	column currency
+		dataType: string
+		lineageTag: 10c1b992-b2ab-4ee0-a781-7f78191539cb
+		sourceColumn: currency
+
+	partition subscription_payment = entity
+		mode: directLake
+		source
+			entityName: subscription_payments
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+		annotation ONT_WorkspaceId = 00000000-0000-0000-0000-000000000000
+
+		annotation ONT_ItemId = 60cc9c80-1af7-9cee-4180-cbfa6eff52ef
+
+		annotation ONT_ItemKind = Lakehouse
+
+		annotation ONT_ItemName = ONT_ALM_ITEM_NAME
+
+		annotation ONT_WorkspaceName = WORKSPACE_NAME_PLACEHOLDER
+
+		annotation ONT_SqlEndpoint = yjvisctaakaudk3fwmoorna3na-ejxhyfjwxiwuzlko75yskha35u.datawarehouse.fabric.microsoft.com
+
+		annotation ONT_SqlDatabase = cx360_data
+
+		annotation ONT_PinnedAtUtc = 2026-11-24T16:15:41Z
+

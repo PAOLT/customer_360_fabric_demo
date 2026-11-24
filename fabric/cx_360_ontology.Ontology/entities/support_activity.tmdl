@@ -1,0 +1,110 @@
+/// A support activity recorded against a support ticket.
+entity support_activity
+	lineageTag: c61a6764-35d7-49a0-b484-636df5755e02
+	backingTable: support_activity
+	keyProperty: activity_id
+
+	/// Unique support activity identifier.
+	property activity_id
+		dataType: string
+		lineageTag: 4816db04-1e89-4622-ad3f-a486e4fd7d4b
+
+		backingConfiguration
+			valueColumn: support_activity.activity_id
+
+		synonym 'activity id'
+
+		synonym 'support activity id'
+
+		synonym 'case activity id'
+
+	/// Identifier of the related support ticket.
+	property ticket_id
+		dataType: string
+		lineageTag: 6756c87e-67de-4c05-99d9-c20909489858
+
+		backingConfiguration
+			valueColumn: support_activity.ticket_id
+
+		synonym 'ticket id'
+
+		synonym 'case id'
+
+		synonym 'support case id'
+
+	/// Identifier of the technical engineer who handled the activity.
+	property technical_engineer_id
+		dataType: string
+		lineageTag: 8737abed-4dde-49e2-863f-e4d69f67aa53
+
+		backingConfiguration
+			valueColumn: support_activity.technical_engineer_id
+
+		synonym 'technical engineer id'
+
+		synonym 'engineer id'
+
+		synonym 'support engineer id'
+
+	/// Activity start timestamp.
+	property started_at
+		dataType: dateTime
+		lineageTag: 44304a29-f7e9-472f-94c2-a1da76f7674f
+
+		backingConfiguration
+			valueColumn: support_activity.started_at
+
+		synonym 'start time'
+
+		synonym 'started on'
+
+		synonym 'activity start'
+
+	/// Activity end timestamp.
+	property ended_at
+		dataType: dateTime
+		lineageTag: a541014e-509e-4f4c-8404-c46e737d9d54
+
+		backingConfiguration
+			valueColumn: support_activity.ended_at
+
+		synonym 'end time'
+
+		synonym 'ended on'
+
+		synonym 'activity end'
+
+	/// Objective of the support activity.
+	property objective
+		dataType: string
+		lineageTag: 326111f9-b950-4ea1-a9db-bf7afcecd65b
+
+		backingConfiguration
+			valueColumn: support_activity.objective
+
+		synonym goal
+
+		synonym purpose
+
+		synonym 'activity objective'
+
+	/// Outcome of the support activity.
+	property outcome
+		dataType: string
+		lineageTag: aa4470b7-55f9-48e0-ab54-162352086535
+
+		backingConfiguration
+			valueColumn: support_activity.outcome
+
+		synonym result
+
+		synonym 'activity outcome'
+
+		synonym 'resolution note'
+
+	synonym 'case activity'
+
+	synonym 'ticket activity'
+
+	synonym 'support case action'
+

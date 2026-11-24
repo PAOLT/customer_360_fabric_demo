@@ -1,0 +1,29 @@
+model Model
+
+ref table customer
+ref table employee_certification
+ref table employee
+ref table product
+ref table sales_milestone
+ref table sales_opportunity
+ref table subscription_payment
+ref table subscription
+ref table support_activity
+ref table support_ticket
+ref table customer_account_executives
+ref table product_telemetry
+
+ref entity customer
+ref entity employee_certification
+ref entity employee
+ref entity product
+ref entity sales_milestone
+ref entity sales_opportunity
+ref entity subscription_payment
+ref entity subscription
+ref entity support_activity
+ref entity support_ticket
+ref entity product_telemetry
+
+ref namespace default
+

@@ -1,0 +1,41 @@
+table customer
+	lineageTag: 5ecc635d-1685-46ba-94ec-b1fe3c5ea901
+
+	column customer_id
+		dataType: string
+		lineageTag: f6aa0e0b-deb7-44a9-ae4f-22653878f83b
+		sourceColumn: customer_id
+
+	column name
+		dataType: string
+		lineageTag: abd46281-14fe-4b16-86bb-aaf95817363e
+		sourceColumn: name
+
+	column country
+		dataType: string
+		lineageTag: 158e0b08-0bd1-4271-b2b4-690ded133d1c
+		sourceColumn: country
+
+	partition customer = entity
+		mode: directLake
+		source
+			entityName: customers
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+		annotation ONT_WorkspaceId = 00000000-0000-0000-0000-000000000000
+
+		annotation ONT_ItemId = 60cc9c80-1af7-9cee-4180-cbfa6eff52ef
+
+		annotation ONT_ItemKind = Lakehouse
+
+		annotation ONT_ItemName = ONT_ALM_ITEM_NAME
+
+		annotation ONT_WorkspaceName = WORKSPACE_NAME_PLACEHOLDER
+
+		annotation ONT_SqlEndpoint = yjvisctaakaudk3fwmoorna3na-ejxhyfjwxiwuzlko75yskha35u.datawarehouse.fabric.microsoft.com
+
+		annotation ONT_SqlDatabase = cx360_data
+
+		annotation ONT_PinnedAtUtc = 2026-11-24T16:13:10Z
+

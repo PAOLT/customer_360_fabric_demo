@@ -1,0 +1,142 @@
+/// A sales opportunity linking a customer, product, and account executive.
+entity sales_opportunity
+	lineageTag: bd855dbe-c174-484b-b35a-b95eec5b4567
+	backingTable: sales_opportunity
+	keyProperty: opportunity_id
+
+	/// Unique sales opportunity identifier.
+	property opportunity_id
+		dataType: string
+		lineageTag: cffa672f-5708-406c-a9f4-12301ad5a04e
+
+		backingConfiguration
+			valueColumn: sales_opportunity.opportunity_id
+
+		synonym 'opportunity id'
+
+		synonym 'deal id'
+
+		synonym 'sales deal id'
+
+	/// Identifier of the customer for the opportunity.
+	property customer_id
+		dataType: string
+		lineageTag: aea25701-6f7f-4081-9492-88baf5f8dcfd
+
+		backingConfiguration
+			valueColumn: sales_opportunity.customer_id
+
+		synonym 'customer id'
+
+		synonym 'customer identifier'
+
+		synonym 'account id'
+
+	/// Identifier of the product in the opportunity.
+	property product_id
+		dataType: string
+		lineageTag: a472ccc0-5f84-47bd-8861-b2660b8fca0f
+
+		backingConfiguration
+			valueColumn: sales_opportunity.product_id
+
+		synonym 'product id'
+
+		synonym 'product identifier'
+
+		synonym 'module id'
+
+	/// Identifier of the account executive responsible for the opportunity.
+	property account_executive_id
+		dataType: string
+		lineageTag: b68cba7f-49fc-48df-a4e1-36bf8e10400f
+
+		backingConfiguration
+			valueColumn: sales_opportunity.account_executive_id
+
+		synonym 'account executive id'
+
+		synonym 'ae id'
+
+		synonym 'sales rep id'
+
+	/// Opportunity start date.
+	property start_date
+		dataType: dateTime
+		lineageTag: 2c44ae70-5c1b-42f0-a207-efa4868a9df2
+
+		backingConfiguration
+			valueColumn: sales_opportunity.start_date
+
+		synonym 'start date'
+
+		synonym 'open date'
+
+		synonym 'effective date'
+
+	/// Opportunity end date.
+	property end_date
+		dataType: dateTime
+		lineageTag: 0029d915-bcd5-47bc-8ddf-6a603e96df42
+
+		backingConfiguration
+			valueColumn: sales_opportunity.end_date
+
+		synonym 'end date'
+
+		synonym 'close date'
+
+		synonym 'expiry date'
+
+	/// Current opportunity state.
+	property state
+		dataType: string
+		lineageTag: 2ddb5f93-bf66-471f-a0e5-e1c4809dee87
+
+		backingConfiguration
+			valueColumn: sales_opportunity.state
+
+		synonym status
+
+		synonym stage
+
+		synonym 'lifecycle state'
+
+	/// Monthly recurring revenue associated with the opportunity.
+	property monthly_recurring_revenue
+		dataType: decimal
+		lineageTag: 8d85380c-3d85-47f7-bf98-83fd5fc424b7
+
+		backingConfiguration
+			valueColumn: sales_opportunity.monthly_recurring_revenue
+
+		synonym mrr
+
+		synonym 'monthly revenue'
+
+		synonym 'recurring revenue'
+
+		synonym 'monthly recurring amount'
+
+	/// Currency code used for the opportunity values.
+	property currency
+		dataType: string
+		lineageTag: 9c372de0-ad1d-48eb-a821-ee7576dd9fb3
+
+		backingConfiguration
+			valueColumn: sales_opportunity.currency
+
+		synonym 'currency code'
+
+		synonym currency
+
+		synonym 'iso currency'
+
+	synonym deal
+
+	synonym 'pipeline item'
+
+	synonym 'sales deal'
+
+	synonym opportunity
+

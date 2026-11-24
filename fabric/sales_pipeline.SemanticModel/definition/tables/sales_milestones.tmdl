@@ -1,0 +1,66 @@
+table sales_milestones
+	lineageTag: 3334b290-ec0c-4296-9c14-3db4064e2a31
+	sourceLineageTag: [dbo].[sales_milestones]
+
+	column milestone_id
+		dataType: string
+		lineageTag: 40164b3b-d9b1-4bd0-996b-8d9e470ce12b
+		sourceLineageTag: milestone_id
+		summarizeBy: none
+		sourceColumn: milestone_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column opportunity_id
+		dataType: string
+		lineageTag: 48f9020d-ce2c-40c9-a9a8-ea8ced352072
+		sourceLineageTag: opportunity_id
+		summarizeBy: none
+		sourceColumn: opportunity_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column activity_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 0f880263-ec9d-4d49-8c47-15d8110abf16
+		sourceLineageTag: activity_at
+		summarizeBy: none
+		sourceColumn: activity_at
+
+		annotation SummarizationSetBy = Automatic
+
+	column objective
+		dataType: string
+		lineageTag: 47f1a12c-31b0-47bd-aeea-166dfa435606
+		sourceLineageTag: objective
+		summarizeBy: none
+		sourceColumn: objective
+
+		annotation SummarizationSetBy = Automatic
+
+	column outcome
+		dataType: string
+		lineageTag: 60f664e3-94c1-4fc8-8705-848c60cee888
+		sourceLineageTag: outcome
+		summarizeBy: none
+		sourceColumn: outcome
+
+		annotation SummarizationSetBy = Automatic
+
+	column sales_engineer_id
+		dataType: string
+		lineageTag: f5df19bc-40e0-4cca-b1ae-f5e3dce4d62c
+		sourceLineageTag: sales_engineer_id
+		summarizeBy: none
+		sourceColumn: sales_engineer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	partition sales_milestones = entity
+		mode: directLake
+		source
+			entityName: sales_milestones
+			schemaName: dbo
+			expressionSource: 'DirectLake - cx360_data'
+

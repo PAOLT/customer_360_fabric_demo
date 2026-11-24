@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Eventhouse",
+    "displayName": "cx360_telemetry",
+    "description": "cx360_telemetry"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "bfef7441-e4d9-a00b-437c-1c839e18f3a2"
+  }
+}

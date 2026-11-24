@@ -1,0 +1,23 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["DirectLake - cx360_data"]
+
+annotation PBI_ProTooling = ["DirectLakeOnOneLakeInWeb","WebModelingEdit","MCP-PBIModeling-Hosted"]
+
+ref table customer_account_executives
+ref table customers
+ref table employee_certifications
+ref table employees
+ref table products
+ref table sales_milestones
+ref table sales_opportunities
+ref table dates
+

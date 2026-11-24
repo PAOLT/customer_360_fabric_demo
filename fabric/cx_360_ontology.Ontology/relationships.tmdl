@@ -1,0 +1,72 @@
+relationship employee_certification_employee_join
+	fromColumn: employee_certification.employee_id
+	toColumn: employee.employee_id
+
+relationship employee_certification_product_join
+	fromColumn: employee_certification.product_id
+	toColumn: product.product_id
+
+relationship sales_milestone_opportunity_join
+	fromColumn: sales_milestone.opportunity_id
+	toColumn: sales_opportunity.opportunity_id
+
+relationship sales_milestone_employee_join
+	fromColumn: sales_milestone.sales_engineer_id
+	toColumn: employee.employee_id
+
+relationship sales_opportunity_customer_join
+	fromColumn: sales_opportunity.customer_id
+	toColumn: customer.customer_id
+
+relationship sales_opportunity_product_join
+	fromColumn: sales_opportunity.product_id
+	toColumn: product.product_id
+
+relationship sales_opportunity_employee_join
+	fromColumn: sales_opportunity.account_executive_id
+	toColumn: employee.employee_id
+
+relationship subscription_payment_subscription_join
+	fromColumn: subscription_payment.subscription_id
+	toColumn: subscription.subscription_id
+
+relationship subscription_customer_join
+	fromColumn: subscription.customer_id
+	toColumn: customer.customer_id
+
+relationship subscription_product_join
+	fromColumn: subscription.product_id
+	toColumn: product.product_id
+
+relationship support_activity_ticket_join
+	fromColumn: support_activity.ticket_id
+	toColumn: support_ticket.ticket_id
+
+relationship support_activity_employee_join
+	fromColumn: support_activity.technical_engineer_id
+	toColumn: employee.employee_id
+
+relationship support_ticket_customer_join
+	fromColumn: support_ticket.customer_id
+	toColumn: customer.customer_id
+
+relationship support_ticket_product_join
+	fromColumn: support_ticket.product_id
+	toColumn: product.product_id
+
+relationship customer_account_executive_from_join
+	fromColumn: customer_account_executives.customer_id
+	toColumn: customer.customer_id
+
+relationship customer_account_executive_to_join
+	fromColumn: customer_account_executives.account_executive_id
+	toColumn: employee.employee_id
+
+relationship product_telemetry_customer_join
+	fromColumn: product_telemetry.customer_id
+	toColumn: customer.customer_id
+
+relationship product_telemetry_product_join
+	fromColumn: product_telemetry.product_id
+	toColumn: product.product_id
+

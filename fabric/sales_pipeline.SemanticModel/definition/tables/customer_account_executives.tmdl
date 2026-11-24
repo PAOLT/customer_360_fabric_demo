@@ -1,0 +1,29 @@
+table customer_account_executives
+	lineageTag: 20c6a9fb-b3b9-4f15-bf37-5bb55276e96b
+	sourceLineageTag: [dbo].[customer_account_executives]
+
+	column customer_id
+		dataType: string
+		lineageTag: bae8384c-d8db-4a9e-a8a3-7437c92163f1
+		sourceLineageTag: customer_id
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column account_executive_id
+		dataType: string
+		lineageTag: 79c637c5-d5c1-44af-b637-bdc52ec96160
+		sourceLineageTag: account_executive_id
+		summarizeBy: none
+		sourceColumn: account_executive_id
+
+		annotation SummarizationSetBy = Automatic
+
+	partition customer_account_executives = entity
+		mode: directLake
+		source
+			entityName: customer_account_executives
+			schemaName: dbo
+			expressionSource: 'DirectLake - cx360_data'
+

@@ -1,0 +1,61 @@
+table support_activity
+	lineageTag: 00ef0f30-4b35-4838-8891-146cf4ed1a3c
+
+	column activity_id
+		dataType: string
+		lineageTag: cf8ad0c4-a26d-4ebf-b9f9-98c7413d1f63
+		sourceColumn: activity_id
+
+	column ticket_id
+		dataType: string
+		lineageTag: f94f0876-e0ed-4895-afdd-16b530ec4d65
+		sourceColumn: ticket_id
+
+	column technical_engineer_id
+		dataType: string
+		lineageTag: 15647adf-dc12-4bbd-8a73-f117d549960d
+		sourceColumn: technical_engineer_id
+
+	column started_at
+		dataType: dateTime
+		lineageTag: 278d794a-43f7-4fc0-9926-b2d40af0b41c
+		sourceColumn: started_at
+
+	column ended_at
+		dataType: dateTime
+		lineageTag: fe11e2ec-3b5c-4c55-a1be-f19963cd1d25
+		sourceColumn: ended_at
+
+	column objective
+		dataType: string
+		lineageTag: 810f4385-81f8-4888-b42b-5da1de105fec
+		sourceColumn: objective
+
+	column outcome
+		dataType: string
+		lineageTag: 5ba6251c-580f-4845-8c33-07f42193f593
+		sourceColumn: outcome
+
+	partition support_activity = entity
+		mode: directLake
+		source
+			entityName: support_activities
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+		annotation ONT_WorkspaceId = 00000000-0000-0000-0000-000000000000
+
+		annotation ONT_ItemId = 60cc9c80-1af7-9cee-4180-cbfa6eff52ef
+
+		annotation ONT_ItemKind = Lakehouse
+
+		annotation ONT_ItemName = ONT_ALM_ITEM_NAME
+
+		annotation ONT_WorkspaceName = WORKSPACE_NAME_PLACEHOLDER
+
+		annotation ONT_SqlEndpoint = yjvisctaakaudk3fwmoorna3na-ejxhyfjwxiwuzlko75yskha35u.datawarehouse.fabric.microsoft.com
+
+		annotation ONT_SqlDatabase = cx360_data
+
+		annotation ONT_PinnedAtUtc = 2026-11-24T16:15:41Z
+

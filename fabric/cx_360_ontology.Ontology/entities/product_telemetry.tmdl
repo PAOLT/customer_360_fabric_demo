@@ -1,0 +1,112 @@
+/// A product telemetry event from the cx360 telemetry Eventhouse.
+entity product_telemetry
+	lineageTag: c2d17d6e-44c2-4d15-aafe-086f32b09f90
+	backingTable: product_telemetry
+	keyProperty: event_id
+
+	/// Unique telemetry event identifier.
+	property event_id
+		dataType: string
+		lineageTag: 23ce4281-6a31-403c-8c10-68f0b48826d5
+
+		backingConfiguration
+			valueColumn: product_telemetry.event_id
+
+		synonym 'event id'
+
+		synonym 'telemetry event id'
+
+		synonym 'event identifier'
+
+	/// Identifier of the customer associated with the telemetry event.
+	property customer_id
+		dataType: string
+		lineageTag: 7456042e-8e9d-4f33-bba1-4a2f49c35547
+
+		backingConfiguration
+			valueColumn: product_telemetry.customer_id
+
+		synonym 'customer id'
+
+		synonym 'customer identifier'
+
+		synonym 'account id'
+
+	/// Identifier of the product associated with the telemetry event.
+	property product_id
+		dataType: string
+		lineageTag: 24c88987-8ab0-4704-961b-40633c03a22c
+
+		backingConfiguration
+			valueColumn: product_telemetry.product_id
+
+		synonym 'product id'
+
+		synonym 'product identifier'
+
+		synonym 'module id'
+
+	/// Timestamp when the telemetry event occurred.
+	property event_at
+		dataType: dateTime
+		lineageTag: 441f0bde-9830-4edf-9ecf-b37112de11b1
+
+		backingConfiguration
+			valueColumn: product_telemetry.event_at
+
+		synonym 'event time'
+
+		synonym 'event timestamp'
+
+		synonym 'occurred at'
+
+	/// Action recorded in the telemetry event.
+	property action
+		dataType: string
+		lineageTag: 9347c057-b708-4f20-9e5f-260f99080a6f
+
+		backingConfiguration
+			valueColumn: product_telemetry.action
+
+		synonym 'event action'
+
+		synonym activity
+
+		synonym operation
+
+	/// Outcome state for the telemetry event.
+	property state
+		dataType: string
+		lineageTag: e949daf5-8f0a-408b-97f9-f5e9c7642af1
+
+		backingConfiguration
+			valueColumn: product_telemetry.state
+
+		synonym status
+
+		synonym 'event state'
+
+		synonym 'result state'
+
+	/// Error message captured for the telemetry event, when present.
+	property error_message
+		dataType: string
+		lineageTag: f2243a2f-5978-4112-b356-3b4e36bdd9c0
+
+		backingConfiguration
+			valueColumn: product_telemetry.error_message
+
+		synonym error
+
+		synonym 'error text'
+
+		synonym message
+
+	synonym 'telemetry event'
+
+	synonym event
+
+	synonym 'product event'
+
+	synonym 'usage event'
+

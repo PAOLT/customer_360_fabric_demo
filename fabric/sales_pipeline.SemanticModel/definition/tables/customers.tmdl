@@ -1,0 +1,38 @@
+table customers
+	lineageTag: 015a2757-016e-405a-8f1e-48f0b5cf8cbd
+	sourceLineageTag: [dbo].[customers]
+
+	column customer_id
+		dataType: string
+		lineageTag: 765e0f20-c42f-4ab5-9859-fbf0199fbc9e
+		sourceLineageTag: customer_id
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: bd9afa33-ea5c-4681-98e1-704ee4235d70
+		sourceLineageTag: name
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column country
+		dataType: string
+		lineageTag: 69e5fc5b-5798-4c68-85e2-608b6c7e87a7
+		sourceLineageTag: country
+		summarizeBy: none
+		sourceColumn: country
+
+		annotation SummarizationSetBy = Automatic
+
+	partition customers = entity
+		mode: directLake
+		source
+			entityName: customers
+			schemaName: dbo
+			expressionSource: 'DirectLake - cx360_data'
+
